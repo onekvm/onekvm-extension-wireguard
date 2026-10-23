@@ -1,0 +1,8 @@
+#!/bin/sh
+# Health check only. WireGuard is provided by wireguard-tools and
+# onekvm-kernel-module-wireguard; OneKVM network settings owns the config.
+# This package does not run a resident service.
+case "$1" in
+--health) exit 0 ;;
+esac
+exit 0

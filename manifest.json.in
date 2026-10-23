@@ -1,0 +1,52 @@
+{
+  "manifest_version": 1,
+  "id": "wireguard",
+  "i18n": {
+    "default": {
+      "name": "WireGuard",
+      "description": "Installs the wg tool and the WireGuard kernel module. Configure interfaces in Network settings."
+    },
+    "zh": {
+      "name": "WireGuard",
+      "description": "安装 wg 工具和 WireGuard 内核模块。在网络设置里配置接口。"
+    },
+    "zh-TW": {
+      "name": "WireGuard",
+      "description": "安裝 wg 工具和 WireGuard 核心模組。在網路設定裡設定介面。"
+    }
+  },
+  "version": "@VERSION@",
+  "api_version": 2,
+  "architecture": "@ARCH@",
+  "kind": "environment",
+  "author": "OneKVM",
+  "kernel_modules": ["wireguard"],
+  "permissions": [],
+  "capabilities": [],
+  "default_enabled": false,
+  "icon": {"source": "custom", "path": "web/logo.svg"},
+  "methods": [
+    {
+      "name": "health",
+      "command": ["bin/onekvm-wireguard", "--health"],
+      "timeout_seconds": 5
+    }
+  ],
+  "settings_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "secret_fields": [],
+  "resource_limits": {
+    "memory_max": "4M",
+    "cpu_quota": "1%",
+    "tasks_max": 1,
+    "limit_nofile": 16
+  },
+  "healthcheck": {
+    "type": "exec",
+    "command": ["bin/onekvm-wireguard", "--health"],
+    "timeout_seconds": 5
+  }
+}
